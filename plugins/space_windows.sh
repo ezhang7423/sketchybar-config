@@ -75,13 +75,13 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   # fi
   ## focused 된 모니터에 space 상태 보이게 설정
   for i in $AEROSAPCE_WORKSPACE_FOCUSED_MONITOR; do
-    sketchybar --set space.$i display=$AEROSPACE_FOCUSED_MONITOR
+    sketchybar --set space.$i display=1
   done
 
   for i in $AEROSPACE_EMPTY_WORKESPACE; do
-    sketchybar --set space.$i display=0
+    sketchybar --set space.$i display=1
   done
 
-  sketchybar --set space.$AEROSPACE_FOCUSED_WORKSPACE display=$AEROSPACE_FOCUSED_MONITOR
+  sketchybar --set space.$AEROSPACE_FOCUSED_WORKSPACE display=1
 
 fi

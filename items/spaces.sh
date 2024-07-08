@@ -8,8 +8,8 @@
 sketchybar --add event aerospace_workspace_change
 #echo $(aerospace list-workspaces --monitor 1 --visible no --empty no) >> ~/aaaa
 
-for m in $(aerospace list-monitors | awk '{print $1}'); do
-  for i in $(aerospace list-workspaces --monitor $m); do
+# for m in $(aerospace list-monitors | awk '{print $1}'); do
+  for i in $(aerospace list-workspaces --all); do
     sid=$i
     space=(
       space="$sid"
@@ -17,7 +17,7 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       icon.highlight_color=$RED
       icon.padding_left=10
       icon.padding_right=10
-      display=$m
+      display=1
       padding_left=2
       padding_right=2
       label.padding_right=20
@@ -49,11 +49,11 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
     sketchybar --animate sin 10 --set space.$sid label="$icon_strip"
   done
 
-  for i in $(aerospace list-workspaces --monitor $m --empty); do
+  for i in $(aerospace list-workspaces --empty); do
     sketchybar --animate sin 10 --set space.$i display=0
   done
   
-done
+# done
 
 
 space_creator=(
@@ -62,7 +62,7 @@ space_creator=(
   padding_left=10
   padding_right=8
   label.drawing=off
-  display=active
+  display=1
   #click_script='yabai -m space --create'
   script="$PLUGIN_DIR/space_windows.sh"
   #script="$PLUGIN_DIR/aerospace.sh"

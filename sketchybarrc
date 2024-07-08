@@ -34,7 +34,7 @@ bar=(
   topmost=window
   color=0x00000000
   border_color=0x00000000
-  display=main
+  display=1
 )
 
 sketchybar --bar "${bar[@]}"
