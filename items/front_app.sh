@@ -3,7 +3,7 @@
 front_app=(
   label.font="$FONT:Black:12.0"
   icon.background.drawing=on
-  display=1
+  display=$DISPLAY_ID
   script="$PLUGIN_DIR/front_app.sh"
   click_script="open -a 'Mission Control'"
 )

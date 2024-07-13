@@ -71,17 +71,17 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
                          background.border_color=$BACKGROUND_2
 
   # if [ "$AEROSPACE_FOCUSED_WORKSPACE" -gt 3 ]; then
-  #   sketchybar --animate sin 10 --set space.$AEROSPACE_FOCUSED_WORKSPACE display=1
+  #   sketchybar --animate sin 10 --set space.$AEROSPACE_FOCUSED_WORKSPACEdisplay=$DISPLAY_ID
   # fi
   ## focused 된 모니터에 space 상태 보이게 설정
   for i in $AEROSAPCE_WORKSPACE_FOCUSED_MONITOR; do
-    sketchybar --set space.$i display=1
+    sketchybar --set space.$i display=$DISPLAY_ID
   done
 
   for i in $AEROSPACE_EMPTY_WORKESPACE; do
-    sketchybar --set space.$i display=1
+    sketchybar --set space.$i display=$DISPLAY_ID
   done
 
-  sketchybar --set space.$AEROSPACE_FOCUSED_WORKSPACE display=1
+  sketchybar --set space.$AEROSPACE_FOCUSED_WORKSPACE display=$DISPLAY_ID
 
 fi

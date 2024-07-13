@@ -4,7 +4,6 @@
 
 # Destroy space on right click, focus space on left click.
 # New space by left clicking separator (>)
-
 sketchybar --add event aerospace_workspace_change
 #echo $(aerospace list-workspaces --monitor 1 --visible no --empty no) >> ~/aaaa
 
@@ -17,7 +16,7 @@ sketchybar --add event aerospace_workspace_change
       icon.highlight_color=$RED
       icon.padding_left=10
       icon.padding_right=10
-      display=1
+      display=$DISPLAY_ID
       padding_left=2
       padding_right=2
       label.padding_right=20
@@ -50,7 +49,7 @@ sketchybar --add event aerospace_workspace_change
   done
 
   for i in $(aerospace list-workspaces --empty); do
-    sketchybar --animate sin 10 --set space.$i display=0
+    sketchybar --animate sin 10 --set space.$i display=$DISPLAY_ID
   done
   
 # done
@@ -62,7 +61,7 @@ space_creator=(
   padding_left=10
   padding_right=8
   label.drawing=off
-  display=1
+  display=$DISPLAY_ID
   #click_script='yabai -m space --create'
   script="$PLUGIN_DIR/space_windows.sh"
   #script="$PLUGIN_DIR/aerospace.sh"

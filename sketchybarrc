@@ -1,5 +1,23 @@
 #!/bin/bash
 
+
+# Run the system_profiler command and parse the JSON output using jq
+displays=$(system_profiler SPDisplaysDataType -json)
+
+# Find the main display and save its name
+main_display_name=$(echo "$displays" | jq -r '.SPDisplaysDataType[0].spdisplays_ndrvs[] | select(.spdisplays_main == "spdisplays_yes") | ._name')
+
+# Find the index of the main display
+main_display_index=$(echo "$displays" | jq -r '.SPDisplaysDataType[0].spdisplays_ndrvs | to_entries | map(select(.value.spdisplays_main == "spdisplays_yes")) | .[0].key')
+
+# Add one to the index
+main_display_index=$((main_display_index + 1))
+
+# Print the name of the main display
+echo "The main display is: $main_display_name with index $main_display_index"
+
+export DISPLAY_ID=$main_display_index
+
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 source "$CONFIG_DIR/icons.sh" # Loads all defined icons
 
@@ -34,7 +52,7 @@ bar=(
   topmost=window
   color=0x00000000
   border_color=0x00000000
-  display=1
+  display=$DISPLAY_ID
 )
 
 sketchybar --bar "${bar[@]}"
@@ -84,9 +102,9 @@ source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/battery.sh"
 # source "$ITEM_DIR/brew.sh"
 # source "$ITEM_DIR/github.sh"
-source "$ITEM_DIR/wifi.sh"
+# source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/svim.sh"
+# source "$ITEM_DIR/svim.sh"
 
 source "$ITEM_DIR/cpu.sh"
 source "$ITEM_DIR/weather.sh"
