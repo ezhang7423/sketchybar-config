@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sleep 5 #* COMMENT THIS OUT WHEN DEBUGGING/EDITING THE SKETHCYBAR CONFIG
 
 # Run the system_profiler command and parse the JSON output using jq
 displays=$(system_profiler SPDisplaysDataType -json)
